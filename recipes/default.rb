@@ -12,6 +12,12 @@ user "bamboo" do
   home node.bamboo.home
 end
 
+directory File.join(node.bamboo.home, 'home') do
+  action :create
+  mode 00755
+  owner "bamboo"
+end
+
 directory node.bamboo.install_dir do
   action :create
   recursive true
@@ -32,7 +38,7 @@ end
 bash "install bamboo" do
   cwd node.bamboo.install_dir
   code <<-EOS
-    tar -xvzf #{tarball_path} --strip 1
+    tar -xvzf #{tarball_path} --strip 1 --owner bamboo
   EOS
   not_if { ::File.exists?("#{node.bamboo.install_dir}/bamboo.sh") }
 end
