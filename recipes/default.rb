@@ -23,14 +23,12 @@ directory File.join(node.bamboo.bamboo_home) do
 end
 
 directory node.bamboo.install_dir do
-  action :create
   recursive true
   mode 00755
 end
 
 # Fix for Vagrant Chef provisioner
 directory cache_path do
-  action :create
   recursive true
 end
 
