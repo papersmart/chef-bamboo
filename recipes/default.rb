@@ -47,6 +47,10 @@ template "#{node.bamboo.install_dir}/atlassian-bamboo/WEB-INF/classes/bamboo-ini
   mode 00644
 end
 
+template "#{node.bamboo.install_dir}/bin/setenv.sh" do
+  mode 00755
+end
+
 template "/etc/init/bamboo.conf" do
   mode 00644
 end
