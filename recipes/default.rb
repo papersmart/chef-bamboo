@@ -4,11 +4,15 @@ include_recipe 'java'
 cache_path = Chef::Config[:file_cache_path]
 tarball_path = "#{cache_path}/#{File.basename(node.bamboo.download_url)}"
 
+directory node.bamboo.home do
+  mode 00755
+  owner "bamboo"
+  group "bamboo"
+end
+
 user "bamboo" do
-  action :create
-  supports :manage_home => true
   system true
-  shell "/bin/false"
+  shell "/bin/bash"
   home node.bamboo.home
 end
 
