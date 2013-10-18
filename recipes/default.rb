@@ -12,10 +12,10 @@ user "bamboo" do
   home node.bamboo.home
 end
 
-directory File.join(node.bamboo.home, 'home') do
-  action :create
+directory File.join(node.bamboo.bamboo_home) do
   mode 00755
   owner "bamboo"
+  group "bamboo"
 end
 
 directory node.bamboo.install_dir do
