@@ -38,7 +38,8 @@ end
 bash "install bamboo" do
   cwd node.bamboo.install_dir
   code <<-EOS
-    tar -xvzf #{tarball_path} --strip 1 --owner bamboo
+    tar -xvzf #{tarball_path} --strip 1
+    chown -R bamboo:bamboo .
   EOS
   not_if { ::File.exists?("#{node.bamboo.install_dir}/bamboo.sh") }
 end
